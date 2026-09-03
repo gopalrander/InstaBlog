@@ -1,0 +1,26 @@
+{
+  "name": "instablog",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspace @instablog/contracts && npm run build --workspace @instablog/api && npm run build --workspace @instablog/web",
+    "dev": "npm run setup:local && node --env-file=.env scripts/dev.mjs",
+    "dev:api": "npm run dev --workspace @instablog/api",
+    "dev:web": "npm run dev --workspace @instablog/web",
+    "migrate": "npm run migrate --workspace @instablog/api",
+    "setup:local": "node scripts/create-local-env.mjs",
+    "test": "npm run test --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present"
+  },
+  "overrides": {
+    "postcss": "8.5.26"
+  }
+}
